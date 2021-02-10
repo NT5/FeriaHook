@@ -1,0 +1,40 @@
+<?php
+
+namespace NT5\Bulker\Modules\Extended\Database\DatabaseInstaller\InstallFiles;
+
+use NT5\Bulker\Modules\Util\Functions;
+use NT5\Bulker\Modules\Extended\Database\DatabaseInstaller;
+use NT5\Bulker\Modules\Extended\Database\DatabaseInstaller\InstallFiles;
+
+trait initFiles {
+
+    public abstract static function getBaseDir();
+
+    /**
+     * 
+     */
+    static function init() {
+
+        function addTable($file) {
+            $Tables = DatabaseInstaller\InstallFilesArea::TABLES;
+
+            InstallFiles::addFile($Tables, Functions::parseDir(array_merge(InstallFiles::getBaseDir(), $file)));
+        }
+
+        function addData($file) {
+            $Data = DatabaseInstaller\InstallFilesArea::DATA;
+
+            InstallFiles::addFile($Data, Functions::parseDir(array_merge(InstallFiles::getBaseDir(), $file)));
+        }
+
+        addTable(array("phpunit.sql"));
+        addTable(array("Install.sql"));
+        addTable(array("tables", "Users.sql"));
+        addTable(array("BaseTables.sql"));
+
+        addData(array("data", "Categorias.sql"));
+        addData(array("data", "Carreras.sql"));
+        addData(array("data", "Asignaturas.sql"));
+    }
+
+}

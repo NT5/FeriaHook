@@ -1,0 +1,38 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Votacion\Database;
+
+use NT5\Bulker\Modules\App\Votacion\VotacionEntry;
+use NT5\Bulker\Modules\Extended;
+
+/**
+ * 
+ */
+trait removeVotacionFromProyectoAndUserId {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $proyecto_id
+     * @param int $user_id
+     */
+    public function removeVotacionFromProyectoAndUserId(int $proyecto_id, int $user_id) {
+
+        $db = $this->Extended()->Database();
+
+        $stmt = $db->prepare("DELETE FROM Votacion WHERE IdProyecto = ? AND IdUser = ?");
+
+        $stmt->bind_param('ii', $proyecto_id, $user_id);
+        $stmt->execute();
+        if ($stmt->affected_rows == 0) {
+            return false;
+        }
+        return true;
+    }
+
+}
+

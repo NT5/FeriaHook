@@ -1,0 +1,41 @@
+<?php
+
+namespace NT5\Bulker\Application\Api\Areas\Proyectos;
+
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Application\Api\LoggedArea;
+use NT5\Bulker\Modules\App\Proyectos;
+
+/**
+ * 
+ */
+class uploadPhoto extends LoggedArea {
+
+    /**
+     *
+     * @var Proyectos
+     */
+    private $Proyectos;
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function initVars() {
+        print_r("foo");
+    }
+
+    public function CheckPost() {
+        
+    }
+
+    public function setUp() {
+        $this->Proyectos = new Proyectos($this->Extended());
+    }
+
+}
+

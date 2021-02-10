@@ -1,0 +1,64 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Proyectos\Database;
+
+use NT5\Bulker\Modules\App\Proyectos\ProyectoEntry;
+use NT5\Bulker\Modules\Extended;
+
+/**
+ * 
+ */
+trait updateProyecto {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $id
+     * @return ProyectoEntry
+     */
+    public abstract function getProyectoFromId(int $id): ProyectoEntry;
+
+    /**
+     * 
+     * @param int $IdProyecto
+     * @param string $NombreProyecto
+     * @param string $Descripcion
+     * @param int $Internet
+     * @param int $Electricidad
+     * @param int $EsInvestigacion
+     * @param int $IdCarrera
+     * @param int $IdAsignatura
+     * @return ProyectoEntry
+     */
+    public function updateProyecto(int $IdProyecto, string $NombreProyecto, string $Descripcion, int $Internet, int $Electricidad, int $EsInvestigacion, int $IdCarrera, int $IdAsignatura) {
+
+        $db = $this->Extended()->Database();
+
+        $stmt = $db->prepare(
+                "UPDATE Proyectos SET "
+                . "NombreProyecto = ?, "
+                . "Descripcion = ?, "
+                . "Internet = ?, "
+                . "Electricidad = ?, "
+                . "EsInvestigacion = ?, "
+                . "IdCarrera = ?, "
+                . "IdAsignatura = ? "
+                . "WHERE IdProyecto = ?"
+        );
+
+        $stmt->bind_param('ssiiiiii', $NombreProyecto, $Descripcion, $Internet, $Electricidad, $EsInvestigacion, $IdCarrera, $IdAsignatura, $IdProyecto);
+        $stmt->execute();
+
+        if ($stmt->affected_rows === 0) {
+            return new ProyectoEntry();
+        } else {
+            return $this->getProyectoFromId($IdProyecto);
+        }
+    }
+
+}
+

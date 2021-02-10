@@ -1,0 +1,313 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Votacion;
+
+/**
+ * @todo Documentar
+ */
+class VotacionEntry {
+
+    /**
+     *
+     * @var int
+     */
+    private $IdVoto;
+
+    /**
+     *
+     * @var int
+     */
+    private $IdProyecto;
+
+    /**
+     *
+     * @var int
+     */
+    private $IdUser;
+
+    /**
+     *
+     * @var int
+     */
+    private $Documento_Score1;
+
+    /**
+     *
+     * @var int
+     */
+    private $Documento_Score2;
+
+    /**
+     *
+     * @var int
+     */
+    private $Documento_Score3;
+
+    /**
+     *
+     * @var int
+     */
+    private $Documento_Score4;
+
+    /**
+     *
+     * @var int
+     */
+    private $Pertinencia_Score1;
+
+    /**
+     *
+     * @var int
+     */
+    private $Pertinencia_Score2;
+
+    /**
+     *
+     * @var int
+     */
+    private $Pertinencia_Score3;
+
+    /**
+     *
+     * @var int
+     */
+    private $Pertinencia_Score4;
+
+    /**
+     *
+     * @var int
+     */
+    private $Creatividad_Innovacion_Score1;
+
+    /**
+     *
+     * @var int
+     */
+    private $Creatividad_Innovacion_Score2;
+
+    /**
+     *
+     * @var int
+     */
+    private $CreateAt;
+
+    /**
+     * 
+     * @param int $IdVoto
+     * @param int $IdProyecto
+     * @param int $IdUser
+     * @param int $Documento_Score1
+     * @param int $Documento_Score2
+     * @param int $Documento_Score3
+     * @param int $Documento_Score4
+     * @param int $Pertinencia_Score1
+     * @param int $Pertinencia_Score2
+     * @param int $Pertinencia_Score3
+     * @param int $Pertinencia_Score4
+     * @param int $Creatividad_Innovacion_Score1
+     * @param int $Creatividad_Innovacion_Score2
+     * @param string $CreateAt
+     */
+    function __construct(int $IdVoto = 0, int $IdProyecto = 0, int $IdUser = 0, int $Documento_Score1 = 0, int $Documento_Score2 = 0, int $Documento_Score3 = 0, int $Documento_Score4 = 0, int $Pertinencia_Score1 = 0, int $Pertinencia_Score2 = 0, int $Pertinencia_Score3 = 0, int $Pertinencia_Score4 = 0, int $Creatividad_Innovacion_Score1 = 0, int $Creatividad_Innovacion_Score2 = 0, string $CreateAt = "0") {
+        $this->IdVoto = $IdVoto;
+        $this->IdProyecto = $IdProyecto;
+        $this->IdUser = $IdUser;
+        $this->Documento_Score1 = $Documento_Score1;
+        $this->Documento_Score2 = $Documento_Score2;
+        $this->Documento_Score3 = $Documento_Score3;
+        $this->Documento_Score4 = $Documento_Score4;
+        $this->Pertinencia_Score1 = $Pertinencia_Score1;
+        $this->Pertinencia_Score2 = $Pertinencia_Score2;
+        $this->Pertinencia_Score3 = $Pertinencia_Score3;
+        $this->Pertinencia_Score4 = $Pertinencia_Score4;
+        $this->Creatividad_Innovacion_Score1 = $Creatividad_Innovacion_Score1;
+        $this->Creatividad_Innovacion_Score2 = $Creatividad_Innovacion_Score2;
+        $this->CreateAt = $CreateAt;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getIdVoto() {
+        return $this->IdVoto;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getIdProyecto() {
+        return $this->IdProyecto;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getIdUser() {
+        return $this->IdUser;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getDocumento_Score1() {
+        return $this->Documento_Score1;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getDocumento_Score2() {
+        return $this->Documento_Score2;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getDocumento_Score3() {
+        return $this->Documento_Score3;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getDocumento_Score4() {
+        return $this->Documento_Score4;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getPertinencia_Score1() {
+        return $this->Pertinencia_Score1;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getPertinencia_Score2() {
+        return $this->Pertinencia_Score2;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getPertinencia_Score3() {
+        return $this->Pertinencia_Score3;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getPertinencia_Score4() {
+        return $this->Pertinencia_Score4;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getCreatividad_Innovacion_Score1() {
+        return $this->Creatividad_Innovacion_Score1;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getCreatividad_Innovacion_Score2() {
+        return $this->Creatividad_Innovacion_Score2;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getCreateAt() {
+        return $this->CreateAt;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getTotal() {
+        return (
+                $this->getTotalDocumento() +
+                $this->getTotalPertinencia() +
+                $this->getTotalCreatividadInnovacion()
+                );
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getTotalDocumento() {
+        return (
+                $this->getDocumento_Score1() +
+                $this->getDocumento_Score2() +
+                $this->getDocumento_Score3() +
+                $this->getDocumento_Score4()
+                );
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getTotalCreatividadInnovacion() {
+        return (
+                $this->getCreatividad_Innovacion_Score1() +
+                $this->getCreatividad_Innovacion_Score2()
+                );
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getTotalPertinencia() {
+        return (
+                $this->getPertinencia_Score1() +
+                $this->getPertinencia_Score2() +
+                $this->getPertinencia_Score3() +
+                $this->getPertinencia_Score4()
+                );
+    }
+
+    /**
+     * 
+     * @return array
+     */
+    public function getJson() {
+        return [
+            'id_voto' => $this->getIdVoto(),
+            'id_proyecto' => $this->getIdProyecto(),
+            'id_user' => $this->getIdUser(),
+            'documento_score_1' => $this->getDocumento_Score1(),
+            'documento_score_2' => $this->getDocumento_Score2(),
+            'documento_score_3' => $this->getDocumento_Score3(),
+            'documento_score_4' => $this->getDocumento_Score4(),
+            'pertinencia_score_1' => $this->getPertinencia_Score1(),
+            'pertinencia_score_2' => $this->getPertinencia_Score2(),
+            'pertinencia_score_3' => $this->getPertinencia_Score3(),
+            'pertinencia_score_4' => $this->getPertinencia_Score4(),
+            'creatividad_innovacion_score_1' => $this->getCreatividad_Innovacion_Score1(),
+            'creatividad_innovacion_score_2' => $this->getCreatividad_Innovacion_Score2(),
+            'total' => $this->getTotal(),
+            'createat' => $this->getCreateAt()
+        ];
+    }
+
+}

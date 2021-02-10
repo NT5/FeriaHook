@@ -1,0 +1,49 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Asignaturas\Database;
+
+use NT5\Bulker\Modules\App\Asignaturas\AsignaturaEntry;
+use NT5\Bulker\Modules\Extended;
+
+/**
+ * 
+ */
+trait getAsignaturaList {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $id
+     * @return AsignaturaEntry
+     */
+    public abstract function getAsignaturaFromId(int $id): AsignaturaEntry;
+
+    /**
+     * 
+     * @return AsignaturaEntry[]
+     */
+    public function getAsignaturaList() {
+        $db = $this->Extended()->Database();
+
+        $asignaturas = [];
+        $asignatura_id = NULL;
+
+        $stmt = $db->prepare("SELECT IdAsignatura FROM Asignaturas");
+        $stmt->execute();
+        $stmt->bind_result($asignatura_id);
+        $stmt->store_result();
+        while ($stmt->fetch()) {
+            $asignaturas[] = $this->getAsignaturaFromId($asignatura_id);
+        }
+        $stmt->free_result();
+        $stmt->close();
+
+        return $asignaturas;
+    }
+
+}
+

@@ -1,0 +1,45 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Asignaturas\Database;
+
+use NT5\Bulker\Modules\App\Asignaturas\AsignaturaEntry;
+use NT5\Bulker\Modules\Extended;
+
+/**
+ * 
+ */
+trait getAsignaturaFromCarreraNivel {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $carrera_id
+     * @param int $carrera_nivel
+     * @return AsignaturaEntry[]
+     */
+    public function getAsignaturaFromCarreraNivel(int $carrera_id, int $carrera_nivel) {
+
+        $db = $this->Extended()->Database();
+        $ListaAsignaturas = [];
+
+        $asignatura_id = NULL;
+        $stmt = $db->prepare("SELECT IdAsignatura FROM Asignaturas WHERE IdCarrera = ? AND Nivel = ?");
+
+        $stmt->bind_param('ii', $carrera_id, $carrera_nivel);
+        $stmt->execute();
+        $stmt->bind_result($asignatura_id);
+        $stmt->store_result();
+        while ($stmt->fetch()) {
+            $ListaAsignaturas[] = $this->getAsignaturaFromId($asignatura_id);
+        }
+        $stmt->free_result();
+        $stmt->close();
+
+        return ($ListaAsignaturas ?: [new AsignaturaEntry()]);
+    }
+
+}

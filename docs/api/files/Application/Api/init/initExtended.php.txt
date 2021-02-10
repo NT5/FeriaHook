@@ -1,0 +1,70 @@
+<?php
+
+namespace NT5\Bulker\Application\Api\init;
+
+use NT5\Bulker\Modules\Util\Functions;
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Modules\Extended\Database;
+use NT5\Bulker\Modules\Extended\Cookies;
+use NT5\Bulker\Modules\Extended\PageConfig;
+
+trait initExtended {
+
+    /**
+     *
+     * @var Extended
+     */
+    private $Extended;
+
+    /**
+     * 
+     * @return Basics
+     */
+    public abstract function getBasics();
+
+    private function initExtended() {
+        $Basics = $this->getBasics();
+        $Cookies = $this->initCookies();
+        $PageConfig = $this->initPageConfig();
+        $Database = $this->initDatabase();
+
+        $Extented = new Extended($Basics, $Cookies, $PageConfig, $Database);
+
+        $this->Extended = $Extented;
+    }
+
+    private function initCookies() {
+        $Cookies = new Cookies('FeriaUML', $this->getBasics());
+
+        return $Cookies;
+    }
+
+    private function initPageConfig() {
+        $inifile = Functions::parseDir([__DIR__, str_repeat(".." . DIRECTORY_SEPARATOR, 5), "config.ini"]);
+        $PageConfig = PageConfig::fromIniFile($this->getBasics(), $inifile);
+        return $PageConfig;
+    }
+
+    private function initDatabase() {
+        $Basics = $this->getBasics();
+
+        $envfile = Functions::parseDir([__DIR__, str_repeat(".." . DIRECTORY_SEPARATOR, 4)]);
+        $dotenv = \Dotenv\Dotenv::create($envfile);
+        $dotenv->load();
+
+        $dotenv->required([
+            'MYSQL_DATABASE',
+            'MYSQL_HOST',
+            'MYSQL_PASSWORD',
+            'MYSQL_USER'
+        ]);
+
+        $DatabaseConf = new Database\DatabaseConfig(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), getenv('MYSQL_DATABASE'), $Basics);
+        $DatabaseConn = new Database\DatabaseConnection($DatabaseConf, TRUE, $Basics);
+        $Database = new Database($DatabaseConn, $Basics);
+
+        return $Database;
+    }
+
+}
+

@@ -1,0 +1,49 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Categorias\Database;
+
+use NT5\Bulker\Modules\App\Categorias\CategoriaEntry;
+use NT5\Bulker\Modules\Util\Functions;
+use NT5\Bulker\Modules\Extended;
+
+/**
+ * 
+ */
+trait getCategoriaFromId {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $id
+     * @return CategoriaEntry
+     */
+    public function getCategoriaFromId(int $id): CategoriaEntry {
+
+        $db = $this->Extended()->Database();
+
+        $ctegoria_id = NULL;
+        $categoria_nombre = NULL;
+        $categoria_createat = NULL;
+
+        $stmt = $db->prepare("SELECT IdCategoria, NombreCategoria, CreateAt FROM Categorias WHERE IdCategoria = ?");
+
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $stmt->bind_result($ctegoria_id, $categoria_nombre, $categoria_createat);
+        $stmt->store_result();
+        $stmt->fetch();
+        $stmt->free_result();
+        $stmt->close();
+
+        if (!Functions::mis_null($ctegoria_id, $categoria_nombre, $categoria_createat)) {
+            return new CategoriaEntry($ctegoria_id, $categoria_nombre, $categoria_createat);
+        }
+
+        return new CategoriaEntry();
+    }
+
+}

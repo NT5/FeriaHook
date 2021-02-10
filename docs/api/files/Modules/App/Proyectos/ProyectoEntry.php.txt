@@ -1,0 +1,351 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Proyectos;
+
+use NT5\Bulker\Modules\App;
+
+/**
+ * @todo Documentar
+ */
+class ProyectoEntry {
+
+    /**
+     *
+     * @var int
+     */
+    private $IdProyecto;
+
+    /**
+     *
+     * @var string
+     */
+    private $NombreProyecto;
+
+    /**
+     *
+     * @var string
+     */
+    private $Descripcion;
+
+    /**
+     *
+     * @var boolean
+     */
+    private $Internet;
+
+    /**
+     *
+     * @var boolean
+     */
+    private $Electricidad;
+
+    /**
+     *
+     * @var boolean
+     */
+    private $Investigacion;
+
+    /**
+     *
+     * @var int
+     */
+    private $Likes;
+
+    /**
+     *
+     * @var string
+     */
+    private $Image;
+
+    /**
+     *
+     * @var int
+     */
+    private $IdAsignatura;
+
+    /**
+     *
+     * @var int
+     */
+    private $IdCarrera;
+
+    /**
+     *
+     * @var int
+     */
+    private $IdTutor;
+
+    /**
+     *
+     * @var int
+     */
+    private $IdCategoria;
+
+    /**
+     *
+     * @var string
+     */
+    private $CreateAt;
+
+    /**
+     *
+     * @var App\Users\UserEntry
+     */
+    private $User;
+
+    /**
+     *
+     * @var App\Carreras\CarreraEntry
+     */
+    private $Carrera;
+
+    /**
+     *
+     * @var App\Asignaturas\AsignaturaEntry
+     */
+    private $Asignatura;
+
+    /**
+     *
+     * @var App\Categorias\CategoriaEntry
+     */
+    private $Categoria;
+
+    /**
+     * 
+     * @param int $IdProyecto
+     * @param string $NombreProyecto
+     * @param string $Descripcion
+     * @param int $Internet
+     * @param int $Electricidad
+     * @param int $Investigacion
+     * @param int $Likes
+     * @param string $Image
+     * @param int $IdCarrera
+     * @param int $IdAsignatura
+     * @param int $IdTutor
+     * @param int $IdCategoria
+     * @param string $CreateAt
+     * @param App\Users\User $User
+     * @param App\Carreras\CarreraEntry $Carrera
+     * @param App\Asignaturas\AsignaturaEntry $Asignatura
+     * @param App\Categorias\CategoriaEntry $Categoria
+     */
+    function __construct(
+            int $IdProyecto = 0,
+            string $NombreProyecto = "No definido",
+            string $Descripcion = "No definido",
+            int $Internet = 0,
+            int $Electricidad = 1,
+            int $Investigacion = 1,
+            int $Likes = 0,
+            string $Image = NULL,
+            int $IdCarrera = 1,
+            int $IdAsignatura = 1,
+            int $IdTutor = 1,
+            int $IdCategoria = 1,
+            string $CreateAt = "0",
+            App\Users\UserEntry $User = NULL,
+            App\Carreras\CarreraEntry $Carrera = NULL,
+            App\Asignaturas\AsignaturaEntry $Asignatura = NULL,
+            App\Categorias\CategoriaEntry $Categoria = NULL
+    ) {
+        $this->IdProyecto = $IdProyecto;
+        $this->NombreProyecto = $NombreProyecto;
+        $this->Descripcion = $Descripcion;
+        $this->Internet = $Internet;
+        $this->Electricidad = $Electricidad;
+        $this->Investigacion = $Investigacion;
+        $this->Likes = $Likes;
+        $this->Image = $Image;
+        $this->IdCarrera = $IdCarrera;
+        $this->IdAsignatura = $IdAsignatura;
+        $this->IdTutor = $IdTutor;
+        $this->IdCategoria = $IdCategoria;
+        $this->CreateAt = $CreateAt;
+        $this->User = ($User) ?: new App\Users\UserEntry();
+        $this->Carrera = ($Carrera) ?: new App\Carreras\CarreraEntry();
+        $this->Asignatura = ($Asignatura) ?: new App\Asignaturas\AsignaturaEntry();
+        $this->Categoria = ($Categoria) ?: new App\Categorias\CategoriaEntry();
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    function getIdProyecto() {
+        return $this->IdProyecto;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    function getNombreProyecto() {
+        return $this->NombreProyecto;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    function getDescripcion() {
+        return $this->Descripcion;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    function getInternet() {
+        return $this->Internet;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    function getElectricidad() {
+        return $this->Electricidad;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    function getInvestigacion() {
+        return $this->Investigacion;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    function getLikes() {
+        return $this->Likes;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    function getImage() {
+        return $this->Image;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    function getIdCarrera() {
+        return $this->IdCarrera;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    function getIdAsignatura() {
+        return $this->IdAsignatura;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    function getIdTutor() {
+        return $this->IdTutor;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    function getIdCategoria() {
+        return $this->IdCategoria;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    function getCreateAt() {
+        return $this->CreateAt;
+    }
+
+    /**
+     * 
+     * @return App\Users\UserEntry
+     */
+    public function getUser(): App\Users\UserEntry {
+        return $this->User;
+    }
+
+    /**
+     * 
+     * @return App\Carreras\CarreraEntry
+     */
+    public function getCarrera(): App\Carreras\CarreraEntry {
+        return $this->Carrera;
+    }
+
+    /**
+     * 
+     * @return App\Asignaturas\AsignaturaEntry
+     */
+    public function getAsignatura(): App\Asignaturas\AsignaturaEntry {
+        return $this->Asignatura;
+    }
+
+    /**
+     * 
+     * @return App\Categorias\CategoriaEntry
+     */
+    public function getCategoria(): App\Categorias\CategoriaEntry {
+        return $this->Categoria;
+    }
+
+    /**
+     * 
+     * @return array
+     */
+    function getJson() {
+        $structure = [
+            'id' => $this->getIdProyecto(),
+            'nombre' => $this->getNombreProyecto(),
+            'descripcion' => $this->getDescripcion(),
+            'internet' => $this->getInternet(),
+            'electricidad' => $this->getElectricidad(),
+            'investigacion' => $this->getInvestigacion(),
+            'likes' => $this->getLikes(),
+            // 'image' => 'https://hook.app.nt5.pw/image.png',
+            'image1' => $this->getImage() ? 'https://hook.app.nt5.pw/res/img/proyectos/' . $this->getImage() : NULL,
+            'id_tutor' => $this->getIdTutor(),
+            'id_categoria' => $this->getIdCategoria(),
+            'id_carrera' => $this->getIdCarrera(),
+            'id_asignatura' => $this->getIdAsignatura(),
+            'createat' => $this->getCreateAt(),
+            'user' => [
+                'id' => $this->getUser()->getUserId(),
+                'nombre' => $this->getUser()->getUserFullName()
+            ],
+            'carrera' => [
+                'id' => $this->getCarrera()->getIdCarrera(),
+                'nombre' => $this->getCarrera()->getNombreCarrera()
+            ],
+            'asignatura' => [
+                'id' => $this->getAsignatura()->getIdAsignatura(),
+                'nivel' => $this->getAsignatura()->getNivel(),
+                'nombre' => $this->getAsignatura()->getNombreAsignatura()
+            ],
+            'categoria' => [
+                'id' => $this->getCategoria()->getIdCategoria(),
+                'nombre' => $this->getCategoria()->getNombreCategoria()
+            ]
+        ];
+
+        return $structure;
+    }
+
+}
+

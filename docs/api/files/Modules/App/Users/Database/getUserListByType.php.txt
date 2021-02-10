@@ -1,0 +1,51 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Users\Database;
+
+use NT5\Bulker\Modules\App\Users\UserEntry;
+use NT5\Bulker\Modules\Extended;
+
+/**
+ * 
+ */
+trait getUserListByType {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $id
+     * @return UserEntry
+     */
+    public abstract function getUser(int $id): UserEntry;
+
+    /**
+     * 
+     * @param int $user_type
+     * @return UserEntry[]
+     */
+    public function getUserListByType(int $user_type) {
+        $db = $this->Extended()->Database();
+
+        $list = [];
+        $id = NULL;
+
+        $stmt = $db->prepare("SELECT User_Id FROM User_Data WHERE User_Type = ? ORDER BY Create_at DESC");
+        $stmt->bind_param('i', $user_type);
+        $stmt->execute();
+        $stmt->bind_result($id);
+        $stmt->store_result();
+        while ($stmt->fetch()) {
+            $list[] = $this->getUser($id);
+        }
+        $stmt->free_result();
+        $stmt->close();
+
+        return $list;
+    }
+
+}
+

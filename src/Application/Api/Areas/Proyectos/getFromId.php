@@ -1,0 +1,68 @@
+<?php
+
+namespace NT5\Bulker\Application\Api\Areas\Proyectos;
+
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Application\Api\Area;
+use NT5\Bulker\Modules\App\Proyectos;
+
+/**
+ * 
+ */
+class getFromId extends Area {
+
+    /**
+     *
+     * @var Proyectos
+     */
+    private $Proyectos;
+
+    /**
+     *
+     * @var Proyectos\ProyectoEntry
+
+     */
+    private $ProyectoInfo;
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function initVars() {
+        $this->setVars([
+            'proyecto' => $this->ProyectoInfo->getJson()
+        ]);
+    }
+
+    public function CheckPost() {
+        $a = $this->Proyectos;
+
+        $post_id = filter_input(INPUT_POST, 'id');
+        if ($post_id) {
+            $proyecto = $a->getProyectoFromId($post_id);
+            if ($proyecto->getIdProyecto() !== 0) {
+                $this->ProyectoInfo = $proyecto;
+            } else {
+                $this->setVars([
+                    'error.code' => 2,
+                    'error.message' => 'No id found'
+                ]);
+            }
+        } else {
+            $this->setVars([
+                'error.code' => 1,
+                'error.message' => 'No post id variable'
+            ]);
+        }
+    }
+
+    public function setUp() {
+        $this->Proyectos = new Proyectos($this->Extended());
+        $this->ProyectoInfo = new Proyectos\ProyectoEntry();
+    }
+
+}

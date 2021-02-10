@@ -1,0 +1,48 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Categorias\Database;
+
+use NT5\Bulker\Modules\App\Categorias\CategoriaEntry;
+use NT5\Bulker\Modules\Extended;
+
+/**
+ * 
+ */
+trait getCategoriaList {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $id
+     * @return CategoriaEntry
+     */
+    public abstract function getCategoriaFromId(int $id): CategoriaEntry;
+
+    /**
+     * 
+     * @return CategoriaEntry[]
+     */
+    public function getCategoriaList() {
+        $db = $this->Extended()->Database();
+
+        $categorias = [];
+        $categoria_id = NULL;
+
+        $stmt = $db->prepare("SELECT IdCategoria FROM Categorias");
+        $stmt->execute();
+        $stmt->bind_result($categoria_id);
+        $stmt->store_result();
+        while ($stmt->fetch()) {
+            $categorias[] = $this->getCategoriaFromId($categoria_id);
+        }
+        $stmt->free_result();
+        $stmt->close();
+
+        return $categorias;
+    }
+
+}

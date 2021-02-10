@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/NT5.html">\NT5</a></li>
+                                                        <li><a href="../namespaces/SAO.html">\SAO</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">424</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">20</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1179397869"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1179397869" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-55222506"></a>
+                                <a href="../namespaces/NT5.html" style="margin-left: 30px; padding-left: 0">NT5</a>
+            </div>
+            <div id="namespace-55222506" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1879062862"></a>
+                                <a href="../namespaces/NT5.Bulker.html" style="margin-left: 30px; padding-left: 0">Bulker</a>
+            </div>
+            <div id="namespace-1879062862" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1865825724"></a>
+                                <a href="../namespaces/NT5.Bulker.Application.html" style="margin-left: 30px; padding-left: 0">Application</a>
+            </div>
+            <div id="namespace-1865825724" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-172873668"></a>
+                                <a href="../namespaces/NT5.Bulker.Application.Api.html" style="margin-left: 30px; padding-left: 0">Api</a>
+            </div>
+            <div id="namespace-172873668" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-341205442"></a>
+                                <a href="../namespaces/NT5.Bulker.Application.Api.init.html" style="margin-left: 30px; padding-left: 0">init</a>
+            </div>
+            <div id="namespace-341205442" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Application.Api.init.initDisplay.html">initDisplay</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Application.Api.init.initRoute.html">initRoute</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Application.Api.ApiRoute.html">ApiRoute</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Application.Api.Area.html">Area</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Application.Api.html">Api</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-316313201"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.html" style="margin-left: 30px; padding-left: 0">Modules</a>
+            </div>
+            <div id="namespace-316313201" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-5953430"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Basics.html" style="margin-left: 30px; padding-left: 0">Basics</a>
+            </div>
+            <div id="namespace-5953430" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-342889590"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Basics.Error.html" style="margin-left: 30px; padding-left: 0">Error</a>
+            </div>
+            <div id="namespace-342889590" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/NT5.Bulker.Modules.Basics.Error.ThrowableError.html">ThrowableError</a></li>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Error.ErrorAdition.html">ErrorAdition</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Error.ErrorChecks.html">ErrorChecks</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Error.ErrorGetter.html">ErrorGetter</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Error.ErrorTrait.html">ErrorTrait</a></li>
+                                                                            <li class="class"><a href="../classes/NT5.Bulker.Modules.Basics.Error.ErrorCodes.html">ErrorCodes</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-14754408"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Basics.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
+            </div>
+            <div id="namespace-14754408" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/NT5.Bulker.Modules.Basics.Logger.Loggeable.html">Loggeable</a></li>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Logger.LoggerAdition.html">LoggerAdition</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Logger.LoggerGetter.html">LoggerGetter</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Logger.LoggerTrait.html">LoggerTrait</a></li>
+                                                                            <li class="class"><a href="../classes/NT5.Bulker.Modules.Basics.Logger.Log.html">Log</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-504085903"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Basics.Warning.html" style="margin-left: 30px; padding-left: 0">Warning</a>
+            </div>
+            <div id="namespace-504085903" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/NT5.Bulker.Modules.Basics.Warning.ThrowableWarning.html">ThrowableWarning</a></li>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Warning.WarningAdition.html">WarningAdition</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Warning.WarningChecks.html">WarningChecks</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Warning.WarningGetter.html">WarningGetter</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.Warning.WarningTrait.html">WarningTrait</a></li>
+                                                                            <li class="class"><a href="../classes/NT5.Bulker.Modules.Basics.Warning.WarningCodes.html">WarningCodes</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Basics.BasicsTrait.html">BasicsTrait</a></li>
+                                                                            <li class="class"><a href="../classes/NT5.Bulker.Modules.Basics.BasicsExtend.html">BasicsExtend</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Basics.Errors.html">Errors</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Basics.Logger.html">Logger</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Basics.Warnings.html">Warnings</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-100033942"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Extended.html" style="margin-left: 30px; padding-left: 0">Extended</a>
+            </div>
+            <div id="namespace-100033942" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-243638520"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Extended.Cookies.html" style="margin-left: 30px; padding-left: 0">Cookies</a>
+            </div>
+            <div id="namespace-243638520" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/NT5.Bulker.Modules.Extended.Cookies.CookiesInterface.html">CookiesInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-545488876"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Extended.Database.html" style="margin-left: 30px; padding-left: 0">Database</a>
+            </div>
+            <div id="namespace-545488876" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1290256394"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Extended.Database.DatabaseConfig.html" style="margin-left: 30px; padding-left: 0">DatabaseConfig</a>
+            </div>
+            <div id="namespace-1290256394" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseConfig.DatabaseConfigInterface.html">DatabaseConfigInterface</a></li>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseConfig.fromIniFile.html">fromIniFile</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseConfig.saveToIni.html">saveToIni</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-417470385"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Extended.Database.DatabaseInstaller.html" style="margin-left: 30px; padding-left: 0">DatabaseInstaller</a>
+            </div>
+            <div id="namespace-417470385" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1227576692"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Extended.Database.DatabaseInstaller.InstallFiles.html" style="margin-left: 30px; padding-left: 0">InstallFiles</a>
+            </div>
+            <div id="namespace-1227576692" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseInstaller.InstallFiles.initFiles.html">initFiles</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseInstaller.InstallFiles.html">InstallFiles</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseInstaller.InstallFilesArea.html">InstallFilesArea</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-561254373"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Extended.Database.DatabaseUtil.html" style="margin-left: 30px; padding-left: 0">DatabaseUtil</a>
+            </div>
+            <div id="namespace-561254373" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseUtil.sqlFromFile.html">sqlFromFile</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseInterface.html">DatabaseInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseConfig.html">DatabaseConfig</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseConnection.html">DatabaseConnection</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseInstaller.html">DatabaseInstaller</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.Database.DatabaseUtil.html">DatabaseUtil</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1853069280"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Extended.PageConfig.html" style="margin-left: 30px; padding-left: 0">PageConfig</a>
+            </div>
+            <div id="namespace-1853069280" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/NT5.Bulker.Modules.Extended.PageConfig.PageConfigI.html">PageConfigI</a></li>
+                                                    <li class="interface"><a href="../classes/NT5.Bulker.Modules.Extended.PageConfig.PageConfigInterface.html">PageConfigInterface</a></li>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Extended.PageConfig.fromIniFile.html">fromIniFile</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Extended.PageConfig.saveToIni.html">saveToIni</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.Cookies.html">Cookies</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.Database.html">Database</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.ExtendedExtended.html">ExtendedExtended</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.PageConfig.html">PageConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-745560290"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
+            </div>
+            <div id="namespace-745560290" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1695390178"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Util.Files.html" style="margin-left: 30px; padding-left: 0">Files</a>
+            </div>
+            <div id="namespace-1695390178" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Files.load_ini_file.html">load_ini_file</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Files.set_ini_file.html">set_ini_file</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1003978899"></a>
+                                <a href="../namespaces/NT5.Bulker.Modules.Util.Functions.html" style="margin-left: 30px; padding-left: 0">Functions</a>
+            </div>
+            <div id="namespace-1003978899" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.checkArray.html">checkArray</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.get_array_value.html">get_array_value</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.getRealIpAddr.html">getRealIpAddr</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.integerToRoman.html">integerToRoman</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.mis_null.html">mis_null</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.parseDir.html">parseDir</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.redirect.html">redirect</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.set_array_value.html">set_array_value</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.startsWith.html">startsWith</a></li>
+                                                    <li class="trait"><a href="../classes/NT5.Bulker.Modules.Util.Functions.strFormat.html">strFormat</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Util.Files.html">Files</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Util.Functions.html">Functions</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Util.ImgPicker.html">ImgPicker</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Util.Token.html">Token</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Basics.html">Basics</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Modules.Extended.html">Extended</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-465531420"></a>
+                                <a href="../namespaces/NT5.Bulker.Test.html" style="margin-left: 30px; padding-left: 0">Test</a>
+            </div>
+            <div id="namespace-465531420" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1808665394"></a>
+                                <a href="../namespaces/NT5.Bulker.Test.Basics.html" style="margin-left: 30px; padding-left: 0">Basics</a>
+            </div>
+            <div id="namespace-1808665394" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-976171061"></a>
+                                <a href="../namespaces/NT5.Bulker.Test.Basics.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
+            </div>
+            <div id="namespace-976171061" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Test.Basics.Logger.LogTest.html">LogTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Test.Basics.ErrorsTest.html">ErrorsTest</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Test.Basics.LoggerTest.html">LoggerTest</a></li>
+                                                    <li class="class"><a href="../classes/NT5.Bulker.Test.Basics.WarningsTest.html">WarningsTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/NT5.Bulker.Test.BasicsTest.html">BasicsTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1189032469"></a>
+                                <a href="../namespaces/SAO.html" style="margin-left: 30px; padding-left: 0">SAO</a>
+            </div>
+            <div id="namespace-1189032469" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1288794891"></a>
+                                <a href="../namespaces/SAO.Application.html" style="margin-left: 30px; padding-left: 0">Application</a>
+            </div>
+            <div id="namespace-1288794891" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-859754413"></a>
+                                <a href="../namespaces/SAO.Application.Api.html" style="margin-left: 30px; padding-left: 0">Api</a>
+            </div>
+            <div id="namespace-859754413" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1932224431"></a>
+                                <a href="../namespaces/SAO.Application.Api.Areas.html" style="margin-left: 30px; padding-left: 0">Areas</a>
+            </div>
+            <div id="namespace-1932224431" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SAO.Application.Api.Areas.Info.html">Info</a></li>
+                                                    <li class="class"><a href="../classes/SAO.Application.Api.Areas.Invalid.html">Invalid</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-322601960"></a>
+                                <a href="../namespaces/SAO.Modules.html" style="margin-left: 30px; padding-left: 0">Modules</a>
+            </div>
+            <div id="namespace-322601960" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-727174855"></a>
+                                <a href="../namespaces/SAO.Modules.App.html" style="margin-left: 30px; padding-left: 0">App</a>
+            </div>
+            <div id="namespace-727174855" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-90729723"></a>
+                                <a href="../namespaces/SAO.Modules.App.Users.html" style="margin-left: 30px; padding-left: 0">Users</a>
+            </div>
+            <div id="namespace-90729723" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1061711044"></a>
+                                <a href="../namespaces/SAO.Modules.App.Users.Database.html" style="margin-left: 30px; padding-left: 0">Database</a>
+            </div>
+            <div id="namespace-1061711044" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/SAO.Modules.App.Users.Database.checkPassword.html">checkPassword</a></li>
+                                                    <li class="trait"><a href="../classes/SAO.Modules.App.Users.Database.getUser.html">getUser</a></li>
+                                                    <li class="trait"><a href="../classes/SAO.Modules.App.Users.Database.getUserByName.html">getUserByName</a></li>
+                                                    <li class="trait"><a href="../classes/SAO.Modules.App.Users.Database.registerUser.html">registerUser</a></li>
+                                                    <li class="trait"><a href="../classes/SAO.Modules.App.Users.Database.userNameExist.html">userNameExist</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SAO.Modules.App.Users.UserEntry.html">UserEntry</a></li>
+                                                    <li class="class"><a href="../classes/SAO.Modules.App.Users.UserSession.html">UserSession</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SAO.Modules.App.Users.html">Users</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content namespace">
+                    <nav>
+                                                <a href="../namespaces/SAO.Modules.App.html">\SAO\Modules\App</a>
+                                            </nav>
+                    <h1><small>\SAO\Modules\App</small>Users</h1>
+
+                                        <h2>Namespaces</h2>
+                    <table class="table table-hover">
+                                                    <tr>
+                                <td><a href="../namespaces/SAO.Modules.App.Users.Database.html">Database</a></td>
+                            </tr>
+                                            </table>
+                    
+                    
+                    
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/SAO.Modules.App.Users.UserEntry.html">UserEntry</a></td>
+                            <td><em></em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/SAO.Modules.App.Users.UserSession.html">UserSession</a></td>
+                            <td><em></em></td>
+                        </tr>
+                                        </table>
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                        <dt>Namespace hierarchy</dt>
+                        <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                    <div class="namespace-wrapper"><a href="../namespaces/default.html">\</a></div>
+                                                            
+                                    <div class="namespace-wrapper"><a href="../namespaces/SAO.html">\SAO</a></div>
+                                                            
+                                    <div class="namespace-wrapper"><a href="../namespaces/SAO.Modules.html">\SAO\Modules</a></div>
+                                                            
+                                    <div class="namespace-wrapper"><a href="../namespaces/SAO.Modules.App.html">\SAO\Modules\App</a></div>
+                                                                                        <div class="namespace-wrapper">\SAO\Modules\App\Users</div>
+                        </dd>
+                    </dl>
+                </aside>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/NT5.html">\NT5</a></li>
+                                                                            <li><a href="../namespaces/SAO.html">\SAO</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on July 30th, 2019 at 22:43.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

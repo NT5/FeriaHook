@@ -1,0 +1,108 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Proyectos\Database;
+
+use NT5\Bulker\Modules\App\Proyectos\ProyectoEntry;
+use NT5\Bulker\Modules\Util\Functions;
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Modules\App;
+
+/**
+ * 
+ */
+trait getProyectoFromId {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @return App\Users
+     */
+    public abstract function getUser(): App\Users;
+
+    /**
+     * 
+     * @return \NT5\Bulker\Modules\App\Carreras
+     */
+    public abstract function getCarrera(): App\Carreras;
+
+    /**
+     * 
+     * @return App\Asignaturas
+     */
+    public abstract function getAsignatura(): App\Asignaturas;
+
+    /**
+     * 
+     * @return App\Categorias
+     */
+    public abstract function getCategoria(): App\Categorias;
+
+    /**
+     * 
+     * @param int $id
+     * @return ProyectoEntry
+     */
+    public function getProyectoFromId(int $id): ProyectoEntry {
+
+        $db = $this->Extended()->Database();
+
+        $IdProyecto = NULL;
+        $NombreProyecto = NULL;
+        $Descripcion = NULL;
+        $Internet = NULL;
+        $Electricidad = NULL;
+        $EsInvestigacion = NULL;
+        $Likes = NULL;
+        $Image = NULL;
+        $IdCarrera = NULL;
+        $IdAsignatura = NULL;
+        $IdTutor = NULL;
+        $IdCategoria = NULL;
+        $CreateAt = NULL;
+
+        $stmt = $db->prepare("SELECT P.IdProyecto, P.NombreProyecto, P.Descripcion, P.Internet, P.Electricidad, P.EsInvestigacion, P.IdCarrera, P.IdAsignatura, P.IdTutor, P.IdCategoria, P.CreateAt, COUNT(PL.IdLike) AS Likes, (SELECT ServerPath FROM ProyectosImagenes WHERE IdProyecto = P.IdProyecto ORDER BY RAND() LIMIT 1) Image FROM Proyectos AS P LEFT JOIN ProyectosLikes AS PL ON P.IdProyecto = PL.IdProyecto WHERE P.IdProyecto = ? GROUP BY(P.IdProyecto)");
+
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $stmt->bind_result($IdProyecto, $NombreProyecto, $Descripcion, $Internet, $Electricidad, $EsInvestigacion, $IdCarrera, $IdAsignatura, $IdTutor, $IdCategoria, $CreateAt, $Likes, $Image);
+        $stmt->store_result();
+        $stmt->fetch();
+        $stmt->free_result();
+        $stmt->close();
+
+        if (!Functions::mis_null($IdProyecto, $NombreProyecto, $Descripcion, $Internet, $Electricidad, $EsInvestigacion, $IdCarrera, $IdAsignatura, $IdTutor, $IdCategoria, $CreateAt)) {
+            $User = $this->getUser()->getUser($IdTutor);
+            $Carrera = $this->getCarrera()->getCarreraFromId($IdCarrera);
+            $Asignatura = $this->getAsignatura()->getAsignaturaFromId($IdAsignatura);
+            $Categoria = $this->getCategoria()->getCategoriaFromId($IdCategoria);
+
+            return new ProyectoEntry(
+                    $IdProyecto,
+                    $NombreProyecto,
+                    $Descripcion,
+                    $Internet,
+                    $Electricidad,
+                    $EsInvestigacion,
+                    $Likes,
+                    $Image,
+                    $IdCarrera,
+                    $IdAsignatura,
+                    $IdTutor,
+                    $IdCategoria,
+                    $CreateAt,
+                    $User,
+                    $Carrera,
+                    $Asignatura,
+                    $Categoria
+            );
+        }
+
+        return new ProyectoEntry();
+    }
+
+}
+

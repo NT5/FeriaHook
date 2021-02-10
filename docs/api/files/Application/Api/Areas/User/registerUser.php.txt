@@ -1,0 +1,84 @@
+<?php
+
+namespace SAO\Application\Api\Areas\User;
+
+use SAO\Modules\Extended;
+use SAO\Modules\App\Users;
+use SAO\Modules\Util\Functions;
+use SAO\Application\Api\Area;
+
+class registerUser extends Area {
+
+    /**
+     *
+     * @var Users
+     */
+    private $Users;
+
+    /**
+     *
+     * @var int
+     */
+    private $State = 0;
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function setUp() {
+        $this->Users = new Users($this->Extended());
+    }
+
+    /**
+     * 
+     * @return Users
+     */
+    private function User(): Users {
+        return $this->Users;
+    }
+
+    /**
+     * 
+     * @param int $State
+     * @return int
+     */
+    private function setState(int $State): int {
+        $this->State = $State;
+        return $this->State;
+    }
+
+    public function CheckPost() {
+        $post = $this->getPost();
+        $require = [
+            "username",
+            "password"
+        ];
+        if (Functions::checkArray($require, $post) && strlen($post['username']) > 2) {
+            $response = $this->User()->registerUser($post['username'], $post['password']);
+            if ($response) {
+                $this->setVar('register.user', [
+                    "username" => $response->getUserName(),
+                    "id" => $response->getUserId(),
+                    "createat" => $response->getCreateAt(),
+                    "type" => $response->getUserType()
+                ]);
+                $this->setState(1);
+            } else {
+                $this->setVar('register.error', "Can't register user");
+                $this->setState(2);
+            }
+        }
+    }
+
+    public function initVars() {
+        $this->setVars([
+            'register.state' => $this->State,
+        ]);
+    }
+
+}
+

@@ -1,0 +1,62 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Users;
+
+use NT5\Bulker\Modules\Util\Token;
+
+/**
+ * 
+ */
+class TokenGenerator {
+
+    /**
+     *
+     * @var Token
+     */
+    private $Generator;
+
+    /**
+     *
+     * @var int
+     */
+    private $Session_Length = 32;
+
+    /**
+     *
+     * @var type 
+     */
+    private $User_Length = 4;
+
+    /**
+     * 
+     */
+    public function __construct() {
+        $this->Generator = new Token();
+    }
+
+    /**
+     * 
+     * @return Token
+     */
+    private function generator() {
+        return $this->Generator;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getSession() {
+        return $this->generator()->generate($this->Session_Length);
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getUser() {
+        return $this->generator()->generate($this->User_Length);
+    }
+
+}
+

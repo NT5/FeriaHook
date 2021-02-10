@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php" verbose="true" convertNoticesToExceptions="false" stderr="true">
+    <php>
+        <ini name="date.timezone" value="GMT"/>
+    </php>
+    <testsuites>
+        <testsuite name="Basics">
+            <directory>src/Test/Basics</directory>
+            <file>srcTest/BasicsTest.php</file>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/php/Test</directory>
+        </whitelist>
+    </filter>
+</phpunit>

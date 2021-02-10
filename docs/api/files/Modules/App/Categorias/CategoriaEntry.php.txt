@@ -1,0 +1,78 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Categorias;
+
+/**
+ * @todo Documentar
+ */
+class CategoriaEntry {
+
+    /**
+     *
+     * @var int
+     */
+    private $IdCategoria;
+
+    /**
+     *
+     * @var string
+     */
+    private $NombreCategoria;
+
+    /**
+     *
+     * @var string
+     */
+    private $CreateAt;
+
+    /**
+     * 
+     * @param int $IdCategoria
+     * @param string $NombreCategoria
+     * @param string $CreateAt
+     */
+    public function __construct(int $IdCategoria = 0, string $NombreCategoria = "No definida", string $CreateAt = "0") {
+        $this->IdCategoria = $IdCategoria;
+        $this->NombreCategoria = $NombreCategoria;
+        $this->CreateAt = $CreateAt;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getIdCategoria(): int {
+        return $this->IdCategoria;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getNombreCategoria(): string {
+        return $this->NombreCategoria;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getCreateAt(): string {
+        return $this->CreateAt;
+    }
+
+    /**
+     * 
+     * @return array
+     */
+    public function getJson() {
+        $structure = [
+            "id" => $this->getIdCategoria(),
+            "nombre" => $this->getNombreCategoria(),
+            "createat" => $this->getCreateAt()
+        ];
+        return $structure;
+    }
+
+}
+

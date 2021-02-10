@@ -1,0 +1,110 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Users;
+
+/**
+ * @todo Documentar
+ */
+class UserEntry {
+
+    /**
+     *
+     * @var int
+     */
+    private $User_Id;
+
+    /**
+     *
+     * @var int
+     */
+    private $User_Type;
+
+    /**
+     *
+     * @var string
+     */
+    private $User_FullName;
+
+    /**
+     *
+     * @var string
+     */
+    private $User_Phone;
+
+    /**
+     *
+     * @var string
+     */
+    private $CreateAt;
+
+    /**
+     * 
+     * @param int $User_Id
+     * @param int $User_Type
+     * @param string $User_FullName
+     * @param string $User_Phone
+     * @param string $User_Email
+     * @param string $CreateAt
+     */
+    public function __construct($User_Id = 0, $User_Type = 0, $User_FullName = 'Invitado', $User_Phone = '505 00000000', $CreateAt = 0) {
+        $this->User_Id = $User_Id;
+        $this->User_Type = $User_Type;
+        $this->User_FullName = $User_FullName;
+        $this->User_Phone = $User_Phone;
+        $this->CreateAt = $CreateAt;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getUserId() {
+        return $this->User_Id;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getUserType() {
+        return $this->User_Type;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getUserFullName() {
+        return $this->User_FullName;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getUserPhone() {
+        return $this->User_Phone;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getCreateAt() {
+        return $this->CreateAt;
+    }
+
+    /**
+     * 
+     * @return array
+     */
+    public function getJson() {
+        $structure = [
+            "id" => $this->getUserId(),
+            "name" => $this->getUserFullName(),
+            "type" => $this->getUserType()
+        ];
+        return $structure;
+    }
+
+}

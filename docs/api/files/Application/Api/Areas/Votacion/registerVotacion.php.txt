@@ -1,0 +1,132 @@
+<?php
+
+namespace NT5\Bulker\Application\Api\Areas\Votacion;
+
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Modules\App\Votacion;
+use NT5\Bulker\Application\Api\LoggedArea;
+
+/**
+ * 
+ */
+class registerVotacion extends LoggedArea {
+
+    /**
+     *
+     * @var Votacion\VotacionEntry
+     */
+    private $Entry;
+
+    /**
+     *
+     * @var Votacion
+     */
+    private $Controller;
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function initVars() {
+        $this->setVars([
+            'votacion' => $this->Entry->getJson()
+        ]);
+    }
+
+    public function CheckPost() {
+
+        $IdProyecto = filter_input(INPUT_POST, 'id_proyecto');
+        $Documento_Score1 = filter_input(INPUT_POST, 'documento_score_1');
+        $Documento_Score2 = filter_input(INPUT_POST, 'documento_score_2');
+        $Documento_Score3 = filter_input(INPUT_POST, 'documento_score_3');
+        $Documento_Score4 = filter_input(INPUT_POST, 'documento_score_4');
+        $Pertinencia_Score1 = filter_input(INPUT_POST, 'pertinencia_score_1');
+        $Pertinencia_Score2 = filter_input(INPUT_POST, 'pertinencia_score_2');
+        $Pertinencia_Score3 = filter_input(INPUT_POST, 'pertinencia_score_3');
+        $Pertinencia_Score4 = filter_input(INPUT_POST, 'pertinencia_score_4');
+        $Creatividad_Innovacion_Score1 = filter_input(INPUT_POST, 'creativad_innovacion_score_1');
+        $Creatividad_Innovacion_Score2 = filter_input(INPUT_POST, 'creativad_innovacion_score_2');
+
+        if ($IdProyecto != NULL &&
+                $Documento_Score1 != NULL &&
+                $Documento_Score2 != NULL &&
+                $Documento_Score3 != NULL &&
+                $Documento_Score4 != NULL &&
+                $Pertinencia_Score1 != NULL &&
+                $Pertinencia_Score2 != NULL &&
+                $Pertinencia_Score3 != NULL &&
+                $Pertinencia_Score4 != NULL &&
+                $Creatividad_Innovacion_Score1 != NULL &&
+                $Creatividad_Innovacion_Score2 != NULL) {
+
+            $this->Entry = $this->registerVotacion(
+                    (int) $IdProyecto,
+                    (int) $Documento_Score1,
+                    (int) $Documento_Score2,
+                    (int) $Documento_Score3,
+                    (int) $Documento_Score4,
+                    (int) $Pertinencia_Score1,
+                    (int) $Pertinencia_Score2,
+                    (int) $Pertinencia_Score3,
+                    (int) $Pertinencia_Score4,
+                    (int) $Creatividad_Innovacion_Score1,
+                    (int) $Creatividad_Innovacion_Score2
+            );
+            if ($this->Entry->getIdVoto() == 0) {
+                $this->setVars([
+                    'error.code' => 2,
+                    'error.message' => 'No se pudo registrar la votacion (ya existe?)'
+                ]);
+            }
+        } else {
+            $this->setVars([
+                'error.code' => 1,
+                'error.message' => 'No valid post body'
+            ]);
+        }
+    }
+
+    public function setUp() {
+        $this->Controller = new Votacion($this->Extended());
+        $this->Entry = new Votacion\VotacionEntry();
+    }
+
+    /**
+     * 
+     * @return Votacion
+     */
+    private function getController(): Votacion {
+        return $this->Controller;
+    }
+
+    /**
+     * 
+     * @param int $IdProyecto
+     * @param int $Documento_Score1
+     * @param int $Documento_Score2
+     * @param int $Documento_Score3
+     * @param int $Documento_Score4
+     * @param int $Pertinencia_Score1
+     * @param int $Pertinencia_Score2
+     * @param int $Pertinencia_Score3
+     * @param int $Pertinencia_Score4
+     * @param int $Creatividad_Innovacion_Score1
+     * @param int $Creatividad_Innovacion_Score2
+     * @return Votacion\VotacionEntry
+     */
+    private function registerVotacion(int $IdProyecto, int $Documento_Score1, int $Documento_Score2, int $Documento_Score3, int $Documento_Score4, int $Pertinencia_Score1, int $Pertinencia_Score2, int $Pertinencia_Score3, int $Pertinencia_Score4, int $Creatividad_Innovacion_Score1, int $Creatividad_Innovacion_Score2): Votacion\VotacionEntry {
+        $user = $this->getUser();
+        $IdUser = $user->getUserId();
+
+        $entry = $this->getController()
+                ->registreVotacion($IdProyecto, $IdUser, $Documento_Score1, $Documento_Score2, $Documento_Score3, $Documento_Score4, $Pertinencia_Score1, $Pertinencia_Score2, $Pertinencia_Score3, $Pertinencia_Score4, $Creatividad_Innovacion_Score1, $Creatividad_Innovacion_Score2);
+
+        return $entry;
+    }
+
+}
+

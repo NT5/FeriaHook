@@ -1,0 +1,71 @@
+<?php
+
+namespace NT5\Bulker\Modules\Extended\Database\DatabaseConfig;
+
+use NT5\Bulker\Modules;
+use NT5\Bulker\Modules\Util;
+
+trait saveToIni {
+
+    /**
+     * 
+     * @return Modules\Basics
+     */
+    abstract public function Basics();
+
+    /**
+     * 
+     * @return string
+     */
+    abstract public function getServer();
+
+    /**
+     * 
+     * @return string
+     */
+    abstract public function getUserName();
+
+    /**
+     * 
+     * @return string
+     */
+    abstract public function getPassword();
+
+    /**
+     * 
+     * @return string
+     */
+    abstract public function getDatabase();
+
+    /**
+     * Guarda la configuracion en un archivo .ini
+     * @param string $inifile Ruta del archivo .ini en el servidor
+     * @return boolean
+     */
+    public function saveToIni($inifile = 'config.ini') {
+
+        $this->Basics()->setLog("Intentando guardar configuración en el archivo $inifile...");
+
+        $ini_area = "MySQL";
+        $data = [
+            "server" => $this->getServer(),
+            "username" => $this->getUserName(),
+            "password" => $this->getPassword(),
+            "database" => $this->getDatabase()
+        ];
+
+        foreach ($data as $index => $value) {
+            if (Util\Files::set_ini_file($inifile, $ini_area, $index, $value)) {
+                $this->Basics()->setLog("La variable %s fue guardada correctamente", $index);
+                continue;
+            } else {
+                $this->Basics()->setLog("No se pudo guardar el archivo de configuración; operacion abortada");
+                return FALSE;
+            }
+        }
+
+        $this->Basics()->setLog("El archivo $inifile fue guardado correctamente");
+        return TRUE;
+    }
+
+}

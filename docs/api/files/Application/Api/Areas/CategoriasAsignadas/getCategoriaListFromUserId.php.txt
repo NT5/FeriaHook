@@ -1,0 +1,67 @@
+<?php
+
+namespace NT5\Bulker\Application\Api\Areas\CategoriasAsignadas;
+
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Application\Api\Area;
+use NT5\Bulker\Modules\App\CategoriasAsignadas;
+
+/**
+ * 
+ */
+class getCategoriaListFromUserId extends Area {
+
+    /**
+     *
+     * @var CategoriasAsignadas
+     */
+    private $Controller;
+
+    /**
+     *
+     * @var int
+     */
+    private $UserId;
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function initVars() {
+
+        $list = [];
+        $user_id = $this->UserId;
+        $db = $this->Controller->getCategoriaListFromUserId($user_id);
+
+        foreach ($db as $entry) {
+            $list[] = [
+                'categoria' => $entry->getCategoriaEntry()->getJson(),
+                'user' => $entry->getUserEntry()->getJson()
+            ];
+        }
+        $this->setVar("asignacion", $list);
+    }
+
+    public function CheckPost() {
+        $user_id = filter_input(INPUT_POST, 'user_id');
+        if ($user_id) {
+            $this->UserId = $user_id;
+        } else {
+            $this->setVars([
+                'error.code' => 1,
+                'error.message' => 'No post user_id variable'
+            ]);
+        }
+    }
+
+    public function setUp() {
+        $this->Controller = new CategoriasAsignadas($this->Extended());
+        $this->UserId = 0;
+    }
+
+}
+

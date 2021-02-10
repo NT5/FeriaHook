@@ -1,0 +1,83 @@
+<?php
+
+namespace NT5\Bulker\Application\Api\Areas\Proyectos;
+
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Application\Api\Area;
+use NT5\Bulker\Modules\App\Proyectos;
+
+/**
+ * 
+ */
+class getCSV extends Area {
+
+    /**
+     *
+     * @var Proyectos
+     */
+    private $Proyectos;
+    private $File;
+    private $csv;
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function initVars() {
+        $db = $this->Proyectos->getProyectoList();
+        $file = $this->File;
+        $csv = $this->csv;
+
+        $col = [
+            "nombre",
+            "descripcion",
+            "user",
+            "carrera",
+            "asignatura",
+            "nivel",
+            "categoria"
+        ];
+        if (!fputcsv($file, $col)) {
+            die('Can\'t write column names in csv file');
+        }
+
+        foreach ($db as $entry) {
+            $row = [
+                $entry->getNombreProyecto(),
+                $entry->getDescripcion(),
+                $entry->getUser()->getUserFullName(),
+                $entry->getCarrera()->getNombreCarrera(),
+                $entry->getAsignatura()->getNombreAsignatura(),
+                $entry->getAsignatura()->getNivel(),
+                $entry->getCategoria()->getNombreCategoria()
+            ];
+            $utfEncodedArray = array_map(function ($arr) {
+                return mb_convert_encoding($arr, 'UTF-16LE', 'UTF-8');
+            }, $row);
+            if (!fputcsv($file, $utfEncodedArray)) {
+                die('Can\'t write rows in csv file');
+            }
+        }
+        fclose($file);
+        $this->setVars([
+            'link' => "https://" . $_SERVER['SERVER_NAME'] . "/" . $csv,
+        ]);
+    }
+
+    public function CheckPost() {
+        
+    }
+
+    public function setUp() {
+        $this->Proyectos = new Proyectos($this->Extended());
+
+        $this->csv = "proyectos-" . date('d-m-Y-his') . '.csv';
+        $this->File = fopen($this->csv, 'w');
+    }
+
+}
+

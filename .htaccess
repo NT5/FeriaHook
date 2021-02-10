@@ -1,0 +1,37 @@
+Options All -Indexes
+
+RedirectMatch 403 ^/vendor/.*$
+RedirectMatch 403 ^/src/.*$
+RedirectMatch 403 ^/sql/.*$
+
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^api/(\w+)*$ ./api.php?p=$1
+RewriteRule ^api/users/(\w+)*$ ./api.php?p=users&users=$1
+RewriteRule ^api/asignaturas/(\w+)*$ ./api.php?p=asignaturas&asignaturas=$1
+RewriteRule ^api/carreras/(\w+)*$ ./api.php?p=carreras&carreras=$1
+RewriteRule ^api/categorias/(\w+)*$ ./api.php?p=categorias&categorias=$1
+RewriteRule ^api/categoriasAsignadas/(\w+)*$ ./api.php?p=categoriasAsignadas&categoriasAsignadas=$1
+RewriteRule ^api/proyectos/(\w+)*$ ./api.php?p=proyectos&proyectos=$1
+RewriteRule ^api/ideas/(\w+)*$ ./api.php?p=ideas&ideas=$1
+RewriteRule ^api/valoraciones/(\w+)*$ ./api.php?p=valoraciones&valoraciones=$1
+RewriteRule ^api/votacion/(\w+)*$ ./api.php?p=votacion&votacion=$1
+RewriteRule ^api/push/(\w+)*$ ./api.php?p=push&push=$1
+
+<Files .htaccess>
+ Order allow,deny
+ Deny from all
+</Files>
+
+<Files .env>
+ order allow,deny
+ Deny from all
+</Files>
+
+<Files setup_env.sh>
+ order allow,deny
+ Deny from all
+</Files>

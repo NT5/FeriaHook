@@ -1,0 +1,71 @@
+<?php
+
+namespace SAO\Application\Api\Areas\User;
+
+use SAO\Modules\Extended;
+use SAO\Application\Api\Area;
+use SAO\Modules\App\Users;
+use SAO\Modules\App\Users\UserEntry;
+
+class getUserByName extends Area {
+
+    /**
+     *
+     * @var Users
+     */
+    private $Users;
+
+    /**
+     *
+     * @var UserEntry
+     */
+    private $UserInfo;
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function CheckPost() {
+        $u = $this->Users;
+
+        $post_user = filter_input(INPUT_POST, 'name');
+        if ($post_user) {
+            $user = $u->getUserByName($post_user);
+            if ($user) {
+                $this->UserInfo = $user;
+            } else {
+                $this->setVars([
+                    'error.code' => 2,
+                    'error.message' => 'No name found'
+                ]);
+            }
+        } else {
+            $this->setVars([
+                'error.code' => 1,
+                'error.message' => 'No name variable'
+            ]);
+        }
+    }
+
+    public function initVars() {
+        $this->setVars([
+            'user' => [
+                'name' => $this->UserInfo->getUserName(),
+                'id' => $this->UserInfo->getUserId(),
+                'type' => $this->UserInfo->getUserType(),
+                'createat' => $this->UserInfo->getCreateAt()
+            ]
+        ]);
+    }
+
+    public function setUp() {
+        $this->Users = new Users($this->Extended());
+        $this->UserInfo = new UserEntry();
+    }
+
+}
+

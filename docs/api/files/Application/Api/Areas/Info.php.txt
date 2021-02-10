@@ -1,0 +1,168 @@
+<?php
+
+namespace NT5\Bulker\Application\Api\Areas;
+
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Application\Api\Area;
+use NT5\Bulker\Modules\App;
+
+/**
+ * 
+ */
+class Info extends Area {
+
+    /**
+     *
+     * @var App\Categorias
+     */
+    private $Categorias;
+
+    /**
+     *
+     * @var App\Asignaturas
+     */
+    private $Asignaturas;
+
+    /**
+     *
+     * @var App\Carreras
+     */
+    private $Carreras;
+
+    /**
+     *
+     * @var App\Users
+     */
+    private $Usuarios;
+
+    /**
+     *
+     * @var App\Proyectos
+     */
+    private $Proyectos;
+
+    /**
+     *
+     * @var App\Votacion
+     */
+    private $Votacion;
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function initVars() {
+        $pro = $this->getProyectos();
+        $asi = $this->getAsignaturas();
+        $car = $this->getCarreras();
+        $cat = $this->getCategorias();
+        $vot = $this->getVotacion();
+
+        $Categorias = $cat->getCategoriaList();
+        $ListaProyectos = $pro->getProyectoList();
+
+        $Proyec = [];
+        $Categ = [];
+        $Votaciones = [];
+
+        foreach ($Categorias as $Categoria) {
+            $name = $Categoria->getNombreCategoria();
+            $Categ[$name] = [];
+        }
+
+        foreach ($ListaProyectos as $Proyecto) {
+            $CategoriaNombre = $Proyecto->getCategoria()->getNombreCategoria();
+            $UserName = $Proyecto->getUser()->getUserFullName();
+
+            $Categ[$CategoriaNombre][] = $Proyecto->getJson();
+            $Proyec[$UserName][] = $Proyecto->getNombreProyecto();
+
+            $Votos = $vot->getVotacionFromProyectoId($Proyecto->getIdProyecto());
+            $Votaciones[$Proyecto->getNombreProyecto()] = array_map(function ($arr) {
+                return $arr->getJson();
+            }, $Votos);
+        }
+
+        array_multisort(array_map('count', $Proyec), SORT_DESC, $Proyec);
+        array_multisort(array_map('count', $Votaciones), SORT_DESC, $Votaciones);
+        array_multisort(array_map('count', $Categ), SORT_DESC, $Categ);
+        $this->setVars([
+            'api.version' => '0.0.1b',
+            'stats' => [
+                'asignaturas' => $asi->getAsignaturaCount(),
+                'carreras' => $car->getCarreraCount(),
+                'proyectos' => count($ListaProyectos)
+            ],
+            'votaciones' => $Votaciones,
+            'categorias' => $Categ,
+            'tutores' => $Proyec
+        ]);
+    }
+
+    public function CheckPost() {
+        
+    }
+
+    public function setUp() {
+        $this->Usuarios = new App\Users($this->Extended());
+        $this->Proyectos = new App\Proyectos($this->Extended());
+        $this->Carreras = new App\Carreras($this->Extended());
+        $this->Categorias = new App\Categorias($this->Extended());
+        $this->Asignaturas = new App\Asignaturas($this->Extended());
+        $this->Votacion = new App\Votacion($this->Extended());
+    }
+
+    /**
+     * 
+     * @return \NT5\Bulker\Modules\App\Categorias
+     */
+    public function getCategorias(): App\Categorias {
+        return $this->Categorias;
+    }
+
+    /**
+     * 
+     * @return \NT5\Bulker\Modules\App\Asignaturas
+     */
+    public function getAsignaturas(): App\Asignaturas {
+        return $this->Asignaturas;
+    }
+
+    /**
+     * 
+     * @return \NT5\Bulker\Modules\App\Carreras
+     */
+    public function getCarreras(): App\Carreras {
+        return $this->Carreras;
+    }
+
+    /**
+     * 
+     * @return \NT5\Bulker\Modules\App\Users
+     */
+    public function getUsuarios(): App\Users {
+        return $this->Usuarios;
+    }
+
+    /**
+     * 
+     * @return \NT5\Bulker\Modules\App\Proyectos
+     */
+    public function getProyectos(): App\Proyectos {
+        return $this->Proyectos;
+    }
+
+    /**
+     * 
+     * @return \NT5\Bulker\Modules\App\Votacion
+     */
+    public function getVotacion(): App\Votacion {
+        return $this->Votacion;
+    }
+
+}
+

@@ -1,0 +1,67 @@
+<?php
+
+namespace NT5\Bulker\Application\Api\Areas\Users;
+
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Application\Api\LoggedArea;
+use NT5\Bulker\Modules\App\Users;
+
+/**
+ * 
+ */
+class getTokenList extends LoggedArea {
+
+    /**
+     *
+     * @var Users
+     */
+    private $Controller;
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function initVars() {
+        
+    }
+
+    public function CheckPost() {
+        $me = $this->getUser();
+
+        if ($me->getUserType() === 3) {
+            $controller = $this->Controller;
+
+            $list = $controller->getUserTokenList();
+
+            $parsed = array_map(function ($arr) {
+                return array_merge($arr["user"]->getJson(), [
+                    "token" => $arr["token"]
+                ]);
+            }, $list);
+
+            array_multisort(
+                    array_map(function ($arr) {
+                        return $arr["type"];
+                    }, $parsed), SORT_ASC, $parsed
+            );
+
+            $this->setVars([
+                "users" => $parsed
+            ]);
+        } else {
+            $this->setVars([
+                "error.message" => "No eres administrador!",
+                "error.code" => 3
+            ]);
+        }
+    }
+
+    public function setUp() {
+        $this->Controller = new Users($this->Extended());
+    }
+
+}

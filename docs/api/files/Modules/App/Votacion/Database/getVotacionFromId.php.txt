@@ -1,0 +1,61 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Votacion\Database;
+
+use NT5\Bulker\Modules\App\Votacion\VotacionEntry;
+use NT5\Bulker\Modules\Util\Functions;
+use NT5\Bulker\Modules\Extended;
+
+/**
+ * 
+ */
+trait getVotacionFromId {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $id
+     * @return VotacionEntry
+     */
+    public function getVotacionFromId(int $id): VotacionEntry {
+
+        $db = $this->Extended()->Database();
+
+        $IdVoto = NULL;
+        $IdProyecto = NULL;
+        $IdUser = NULL;
+        $Documento_Score1 = NULL;
+        $Documento_Score2 = NULL;
+        $Documento_Score3 = NULL;
+        $Documento_Score4 = NULL;
+        $Pertinencia_Score1 = NULL;
+        $Pertinencia_Score2 = NULL;
+        $Pertinencia_Score3 = NULL;
+        $Pertinencia_Score4 = NULL;
+        $Creatividad_Innovacion_Score1 = NULL;
+        $Creatividad_Innovacion_Score2 = NULL;
+        $CreateAt = NULL;
+
+        $stmt = $db->prepare("SELECT IdVoto, IdProyecto, IdUser, Documento_Score1, Documento_Score2, Documento_Score3, Documento_Score4, Pertinencia_Score1, Pertinencia_Score2, Pertinencia_Score3, Pertinencia_Score4, Creatividad_Innovacion_Score1, Creatividad_Innovacion_Score2, CreateAt FROM Votacion WHERE IdVoto = ?");
+
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $stmt->bind_result($IdVoto, $IdProyecto, $IdUser, $Documento_Score1, $Documento_Score2, $Documento_Score3, $Documento_Score4, $Pertinencia_Score1, $Pertinencia_Score2, $Pertinencia_Score3, $Pertinencia_Score4, $Creatividad_Innovacion_Score1, $Creatividad_Innovacion_Score2, $CreateAt);
+        $stmt->store_result();
+        $stmt->fetch();
+        $stmt->free_result();
+        $stmt->close();
+
+        if (!Functions::mis_null($IdVoto, $IdProyecto, $IdUser, $Documento_Score1, $Documento_Score2, $Documento_Score3, $Documento_Score4, $Pertinencia_Score1, $Pertinencia_Score2, $Pertinencia_Score3, $Pertinencia_Score4, $Creatividad_Innovacion_Score1, $Creatividad_Innovacion_Score2, $CreateAt)) {
+            return new VotacionEntry($IdVoto, $IdProyecto, $IdUser, $Documento_Score1, $Documento_Score2, $Documento_Score3, $Documento_Score4, $Pertinencia_Score1, $Pertinencia_Score2, $Pertinencia_Score3, $Pertinencia_Score4, $Creatividad_Innovacion_Score1, $Creatividad_Innovacion_Score2, $CreateAt);
+        }
+
+        return new VotacionEntry();
+    }
+
+}
+

@@ -1,0 +1,42 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Users\Database;
+
+use NT5\Bulker\Modules\App\Users\UserEntry;
+
+trait registerUserToken {
+
+    /**
+     * @return \NT5\Bulker\Modules\Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $id
+     * @return UserEntry
+     */
+    public abstract function getUser(int $id): UserEntry;
+
+    /**
+     * 
+     * @param int $user_id
+     * @param string $user_token
+     * @return UserEntry
+     */
+    public function registerUserToken(int $user_id, string $user_token) {
+        $db = $this->Extended()->Database();
+
+        $stmt = $db->prepare("INSERT INTO User_Token (User_Id, User_Token) VALUES(?, ?)");
+        $stmt->bind_param('is', $user_id, $user_token);
+        $stmt->execute();
+
+        if ($stmt->errno) {
+            return new UserEntry();
+        } else {
+            $id = $db->getLastId();
+            return $this->getUser($id);
+        }
+    }
+
+}

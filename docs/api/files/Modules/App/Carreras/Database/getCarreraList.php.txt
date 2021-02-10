@@ -1,0 +1,49 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\Carreras\Database;
+
+use NT5\Bulker\Modules\App\Carreras\CarreraEntry;
+use NT5\Bulker\Modules\Extended;
+
+/**
+ * 
+ */
+trait getCarreraList {
+
+    /**
+     * @return Extended
+     */
+    public abstract function Extended();
+
+    /**
+     * 
+     * @param int $id
+     * @return CarreraEntry
+     */
+    public abstract function getCarreraFromId(int $id): CarreraEntry;
+
+    /**
+     * 
+     * @return CarreraEntry[]
+     */
+    public function getCarreraList() {
+        $db = $this->Extended()->Database();
+
+        $carreras = [];
+        $carrera_id = NULL;
+
+        $stmt = $db->prepare("SELECT IdCarrara FROM Carreras");
+        $stmt->execute();
+        $stmt->bind_result($carrera_id);
+        $stmt->store_result();
+        while ($stmt->fetch()) {
+            $carreras[] = $this->getCarreraFromId($carrera_id);
+        }
+        $stmt->free_result();
+        $stmt->close();
+
+        return $carreras;
+    }
+
+}
+

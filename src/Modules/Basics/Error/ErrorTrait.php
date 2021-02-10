@@ -1,0 +1,16 @@
+<?php
+
+namespace NT5\Bulker\Modules\Basics\Error;
+
+trait ErrorTrait {
+
+    /**
+     *
+     * @var array
+     */
+    protected $Errors = [];
+
+    use ErrorAdition,
+        ErrorGetter,
+        ErrorChecks;
+}

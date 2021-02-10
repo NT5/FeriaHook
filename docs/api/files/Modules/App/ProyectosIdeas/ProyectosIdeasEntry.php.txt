@@ -1,0 +1,118 @@
+<?php
+
+namespace NT5\Bulker\Modules\App\ProyectosIdeas;
+
+class ProyectosIdeasEntry {
+
+    /**
+     *
+     * @var int
+     */
+    private $IdProyecto;
+
+    /**
+     *
+     * @var string
+     */
+    private $NombreCreador;
+
+    /**
+     *
+     * @var string
+     */
+    private $TelefonoCreador;
+
+    /**
+     *
+     * @var string
+     */
+    private $CorreoCreador;
+
+    /**
+     *
+     * @var string
+     */
+    private $DescripcionProyecto;
+
+    /**
+     *
+     * @var string
+     */
+    private $CreateAt;
+
+    public function __construct(int $IdProyecto = 0, string $NombreCreador = "Anónimo", string $TelefonoCreador = "Anónimo", string $CorreoCreador = "Anónimo", string $DescripcionProyecto = "Anónimo", string $CreateAt = "0") {
+        $this->IdProyecto = $IdProyecto;
+        $this->NombreCreador = $NombreCreador;
+        $this->TelefonoCreador = $TelefonoCreador;
+        $this->CorreoCreador = $CorreoCreador;
+        $this->DescripcionProyecto = $DescripcionProyecto;
+        $this->CreateAt = $CreateAt;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getIdProyecto() {
+        return $this->IdProyecto;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getNombreCreador() {
+        return $this->NombreCreador;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getTelefonoCreador() {
+        return $this->TelefonoCreador;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getCorreoCreador() {
+        return $this->CorreoCreador;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getDescripcionProyecto() {
+        return $this->DescripcionProyecto;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getCreateAt() {
+        return $this->CreateAt;
+    }
+
+    /**
+     * 
+     * @return array
+     */
+    public function getJson() {
+        return [
+            "id_idea" => $this->getIdProyecto(),
+            "creador" => $this->getNombreCreador(),
+            "descripcion" => $this->getDescripcionProyecto(),
+            "contacto" => [
+                "correo" => $this->getCorreoCreador(),
+                "telefono" => $this->getTelefonoCreador()
+            ],
+            "createAt" => $this->getCreateAt()
+        ];
+    }
+
+}
+

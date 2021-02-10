@@ -1,0 +1,62 @@
+<?php
+
+namespace NT5\Bulker\Application\Api\Areas\Votacion;
+
+use NT5\Bulker\Modules\Extended;
+use NT5\Bulker\Application\Api\LoggedArea;
+use NT5\Bulker\Modules\App\Votacion;
+
+/**
+ * 
+ */
+class setState extends LoggedArea {
+
+    /**
+     *
+     * @var Votacion
+     */
+    private $Controller;
+
+    /**
+     *
+     * @var string
+     */
+    private $State = "disable";
+
+    /**
+     * 
+     * @param Extended $Extended
+     */
+    public function __construct(Extended $Extended = NULL) {
+        parent::__construct($Extended);
+    }
+
+    public function initVars() {
+        $this->setVars([
+            'votacion.state' => $this->State
+        ]);
+    }
+
+    public function CheckPost() {
+        $Controller = $this->Controller;
+
+        $state = $this->getPost('state');
+
+        switch ($state) {
+            case 'enable':
+                $this->State = "enable";
+                $Controller->setVotacionStateActive();
+                break;
+            case 'disable':
+            default:
+                $Controller->setVotacionStateDisable();
+                $this->State = "disable";
+                break;
+        }
+    }
+
+    public function setUp() {
+        $this->Controller = new Votacion($this->Extended());
+    }
+
+}
